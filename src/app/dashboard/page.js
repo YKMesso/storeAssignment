@@ -78,7 +78,7 @@ export default function Page() {
                                 {item.price}
 
                                 <br></br>
-                                <Button onClick={() => putInCart(item.pname)} variant="outlined"> Add to cart
+                                <Button onClick={() => putInCart(item.pname, item.price, item._id)} variant="outlined"> Add to cart
                                 </Button>
                             </div>
                         ))
