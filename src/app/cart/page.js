@@ -20,13 +20,6 @@ import { useState, useEffect } from 'react'
 
 export default function Page() {
 
-    // function for putting items into the shopping cart.
-    function putInCart(){
-        console.log("putting in cart: " + pname);
-        fetch(`api/login?email=${email}&pass=${pass}`);
-    }
-
-
     const [data, setData] = useState(null)
 
     useEffect(() => {
@@ -35,7 +28,7 @@ export default function Page() {
             .then((res) => res.json())
             .then((data) => {
                 setData(data);
-            })
+            });
     }, [])
 
     if (!data) {

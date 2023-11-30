@@ -43,7 +43,7 @@ export default function Page() {
             .then((res) => res.json())
             .then((weather) => {
                 setWeatherData(weather);
-            })
+            });
 
     }, [])
 
