@@ -70,7 +70,7 @@ export default function Page() {
 
 
 
-    runDBCallAsync(`http://localhost:3000/api/register?email=${email}&pass=${pass}&lname=${lname}&fname=${fname}&dob=${dob}`)
+    runDBCallAsync(`api/login?email=${email}&pass=${pass}`)
 
   }; // end handler
 
