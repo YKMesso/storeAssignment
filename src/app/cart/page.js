@@ -58,6 +58,8 @@ export default function Page() {
                                 -
                                 {item.price}
                                 <br></br>
+                                <Button onClick={() => removeFromCart(item.pname, item.price)} variant="outlined">
+                                    {" "} Remove</Button>
                             </div>
                         ))
                     }
