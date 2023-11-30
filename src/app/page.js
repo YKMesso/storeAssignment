@@ -24,6 +24,9 @@ export default function Page() {
   This function does the actual work
   calling the fetch to get things from the database.
   */
+  
+  
+  
   async function runDBCallAsync(url) {
 
 
@@ -39,12 +42,12 @@ export default function Page() {
       console.log("login invalid (login page)")
     }
 
+  }
+    
 
-    /*
-
-    When the button is clicked, this is the event that is fired.
-    The first thing we need to do is prevent the default refresh of the page.
-    */
+  //  When the button is clicked, this is the event that is fired.
+    //The first thing we need to do is prevent the default refresh of the page.
+    
     const handleSubmit = (event) => {
 
       console.log("handling submit");
@@ -162,5 +165,5 @@ export default function Page() {
         </ThemeProvider>
 
     );
-  }
+  
 }
