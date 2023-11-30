@@ -33,11 +33,11 @@ export default function Page() {
 
  
     if(data.data== "true"){
-      console.log("registered");
+      console.log("not valid (register page)");
 
     } else {
 
-      console.log("not valid (register page)");
+      console.log("registered");
     }
   }
 
