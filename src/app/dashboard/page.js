@@ -21,8 +21,8 @@ import { useState, useEffect } from 'react'
 export default function Page() {
 
     // function for putting items into the shopping cart.
-    function putInCart(pname, price, username){
-        console.log("putting in cart: " + pname, price, username )
+    function putInCart(email, pass){
+        console.log("putting in cart: " + email + pass)
         fetch("api/login?email=${email}&pass=${pass}");
     }
 
@@ -33,7 +33,7 @@ export default function Page() {
 
     useEffect(() => {
 
-        fetch('fetch(\'api/getProducts')
+        fetch('api/getProducts')
             .then((res) => res.json())
             .then((data) => {
                 setData(data)

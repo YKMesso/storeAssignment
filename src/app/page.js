@@ -31,7 +31,7 @@ export default function Page() {
     const data = await res.json();
 
 
-    if(data.data== "true"){
+    if(data == "true"){
       console.log("login valid")
 
     } else {
@@ -65,8 +65,7 @@ export default function Page() {
       console.log("Sent dob:" + dob)
 
 
-      runDBCallAsync(`http://localhost:3000/api/login?email=${email}&pass=${pass}&dob=${dob}`)
-
+      runDBCallAsync('api/login?email=${email}&pass=${pass}&dob=${dob}');
     }; // end handler
 
 

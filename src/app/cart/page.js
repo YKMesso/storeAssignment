@@ -23,7 +23,7 @@ export default function Page() {
     // function for putting items into the shopping cart.
     function putInCart(pname){
         console.log("putting in cart: " + pname)
-        fetch("api/login?email=${email}&pass=${pass}");
+        fetch(`api/login?email=${email}&pass=${pass}`);
     }
 
 
@@ -34,7 +34,7 @@ export default function Page() {
         fetch('api/getCart')
             .then((res) => res.json())
             .then((data) => {
-                setData(data)
+                setData(data);
             })
     }, [])
 
