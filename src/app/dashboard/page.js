@@ -23,7 +23,7 @@ export default function Page() {
     // function for putting items into the shopping cart.
     function putInCart(email, pass){
         console.log("putting in cart: " + email + pass)
-        fetch(`api/login?email=${email}&pass=${pass}`);
+        fetch(`api/putInCart?email=${email}&pass=${pass}`);
     }
 
 
@@ -70,7 +70,8 @@ export default function Page() {
                     {
                         data.map((item, i) => (
                             <div style={{padding: '20px'}} key={i}>
-                                Unique ID: {item.username}
+                                Unique ID: {item._id}
+
                                 <br></br>
                                 {item.pname}
                                 -
