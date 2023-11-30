@@ -21,9 +21,9 @@ import { useState, useEffect } from 'react'
 export default function Page() {
 
     // function for putting items into the shopping cart.
-    function putInCart(email, pass){
-        console.log("putting in cart: " + email + pass)
-        fetch(`api/putInCart?email=${email}&pass=${pass}`);
+    function putInCart(pname, price, username){
+        console.log("putting in cart: " + pname + price + username);
+        fetch(`api/putInCart?pname=${pname}&price=${price}&username=${username}`);
     }
 
 
