@@ -65,7 +65,7 @@ export default function Page() {
       console.log("Sent dob:" + dob)
 
 
-      runDBCallAsync('api/login?email=${email}&pass=${pass}&dob=${dob}');
+      runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
     }; // end handler
 
 

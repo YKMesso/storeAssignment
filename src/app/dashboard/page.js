@@ -36,13 +36,13 @@ export default function Page() {
         fetch('api/getProducts')
             .then((res) => res.json())
             .then((data) => {
-                setData(data)
+                setData(data);
             })
 
         fetch('api/getWeather')
             .then((res) => res.json())
             .then((weather) => {
-                setWeatherData(weather)
+                setWeatherData(weather);
             })
 
     }, [])
