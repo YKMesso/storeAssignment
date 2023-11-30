@@ -23,7 +23,7 @@ export default function Page() {
     // function for putting items into the shopping cart.
     function putInCart(email, pass){
         console.log("putting in cart: " + email + pass)
-        fetch("api/login?email=${email}&pass=${pass}");
+        fetch(`api/login?email=${email}&pass=${pass}`);
     }
 
 
