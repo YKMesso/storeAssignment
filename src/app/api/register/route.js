@@ -4,18 +4,18 @@ export async function GET(req, res) {
 
   // Make a note we are on
   // the api. This goes to the console.
-  console.log("in the api page")
+  console.log("in the api page");
 
 
   // get the values
   // that were sent across to us.
-  const { searchParams } = new URL(req.url)
-  const fname = searchParams.get('fname')
-  const lname = searchParams.get('lname')
-  const email = searchParams.get('email')
-  const pass = searchParams.get('pass')
-  const number = searchParams.get('number')
-  const dob = searchParams.get('dob')
+  const { searchParams } = new URL(req.url);
+  const fname = searchParams.get('fname');
+  const lname = searchParams.get('lname');
+  const email = searchParams.get('email');
+  const pass = searchParams.get('pass');
+  const number = searchParams.get('number');
+  const dob = searchParams.get('dob');
 
   console.log(fname);
   console.log(lname);

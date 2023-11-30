@@ -33,11 +33,11 @@ export default function Page() {
 
  
     if(data.data== "true"){
-      console.log("registered")
+      console.log("registered");
 
     } else {
 
-      console.log("not valid (register page)")
+      console.log("not valid (register page)");
     }
   }
 
@@ -56,21 +56,21 @@ export default function Page() {
   
 		const data = new FormData(event.currentTarget);
 
-        let fname = data.get('fname')
-        let lname = data.get('lname')
-        let email = data.get('email')
-		let pass = data.get('pass')
-        let dob = data.get('dob')
+        let fname = data.get('fname');
+        let lname = data.get('lname');
+        let email = data.get('email');
+		let pass = data.get('pass');
+        let dob = data.get('dob');
 
-        console.log("Sent fname:" + fname)
-        console.log("Sent lname:" + lname)
-        console.log("Sent email:" + email)
-        console.log("Sent pass:" + pass)
-        console.log("Sent dob:" + dob)
+        console.log("Sent fname:" + fname);
+        console.log("Sent lname:" + lname);
+        console.log("Sent email:" + email);
+        console.log("Sent pass:" + pass);
+        console.log("Sent dob:" + dob);
 
 
 
-    runDBCallAsync(`api/login?email=${email}&pass=${pass}`)
+    runDBCallAsync(`api/login?email=${email}&pass=${pass}`);
 
   }; // end handler
 

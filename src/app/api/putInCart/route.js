@@ -1,13 +1,13 @@
 export async function GET(req, res) {
 // Make a note we are on
 // the api. This goes to the console.
-    console.log("in the putInCart api page")
+    console.log("in the putInCart api page");
 // get the values
 // that were sent across to us.
-    const { searchParams } = new URL(req.url)
-    const pname = searchParams.get('pname')
-    const price = searchParams.get('price')
-    const username = searchParams.get('username')
+    const { searchParams } = new URL(req.url);
+    const pname = searchParams.get('pname');
+    const price = searchParams.get('price');
+    const username = searchParams.get('username');
     console.log(pname);
     console.log(price);
     console.log(username);
@@ -28,5 +28,5 @@ export async function GET(req, res) {
     const findResult = await collection.insertOne({pname: pname, price: price, username: username});
 //==========================================================
 // at the end of the process we need to send something back.
-    return Response.json({ "data":"" + "inserted" + ""})
+    return Response.json({ "data":"" + "inserted" + ""});
 }

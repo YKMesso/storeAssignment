@@ -3,7 +3,7 @@ import {MongoClient} from "mongodb";
 export async function GET(req, res) {
 // Make a note we are on
 // the api. This goes to the console.
-    console.log("in the api page")
+    console.log("in the api page");
 // =================================================
     const { MongoClient } = require('mongodb');
     const url = 'mongodb+srv://mannyojomo:RichWebApp@storeassignment.wietkvg.mongodb.net/?retryWrites=true&w=majority';
@@ -17,5 +17,5 @@ export async function GET(req, res) {
     console.log('Found documents =>', findResult);
 //==========================================================
 // at the end of the process we need to send something back.
-    return Response.json(findResult)
+    return Response.json(findResult);
 }

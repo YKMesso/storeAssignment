@@ -1,17 +1,22 @@
 import {MongoClient} from "mongodb";
-import app from "request";
 
 export async function GET(req, res) {
-    console.log("in the removeFromCart api page");
-    app.delete('/api/removeFromCart', (req, res) => {
-        // Logic to handle the DELETE request
-    });
-    console.log("DELETE funtion allowed");
-    // get the values that were sent across to us.
+// Make a note we are on
+// the api. This goes to the console.
+    console.log("in the putInCart api page");
+// get the values
+// that were sent across to us.
     const { searchParams } = new URL(req.url);
     const pname = searchParams.get('pname');
+    const price = searchParams.get('price');
+    const username = searchParams.get('username');
     console.log(pname);
-//===================================================
+    console.log(price);
+    console.log(username);
+// =================================================
+
+
+
     const { MongoClient } = require('mongodb');
     const url = 'mongodb+srv://mannyojomo:RichWebApp@storeassignment.wietkvg.mongodb.net/?retryWrites=true&w=majority';
     const client = new MongoClient(url);
@@ -20,17 +25,10 @@ export async function GET(req, res) {
     console.log('Connected successfully to server');
     const db = client.db(dbName);
     const collection = db.collection('shopping_cart'); // collection name
-    var deleteCriteria = { pname: pname, username: "sample@test.com" };
-    // Use deleteOne to remove the specified item from the collection
-    const deleteResult = await collection.deleteOne(deleteCriteria);
-
-    return Response.json({"data":"" + "removed" + ""})
-
-    if (deleteResult.deletedCount === 1) {
-        console.log('Item removed from cart:', pname);
-        return res.json({ "data": "removed" });
-    } else {
-        console.log('Item not found in cart:', pname);
-        return res.json({ "data": "not found" });
-    }
+    //const myobj = {"pname": pname, "price": price, "username": username};
+    //const insertResult = await collection.insertOne(myobj);
+    const findResult = await collection.deleteOne({pname: pname, price: price, username: username});
+//==========================================================
+// at the end of the process we need to send something back.
+    return Response.json({ "data":"" + "inserted" + ""});
 }

@@ -27,8 +27,8 @@ export default function Page() {
     }
 
 
-    const [data, setData] = useState(null)
-    const [weather, setWeatherData] = useState(0)
+    const [data, setData] = useState(null);
+    const [weather, setWeatherData] = useState(0);
 
 
     useEffect(() => {

@@ -35,11 +35,11 @@ export default function Page() {
 
 
     if(data == "true"){
-      console.log("login valid")
+      console.log("login valid");
 
     } else {
 
-      console.log("login invalid (login page)")
+      console.log("login invalid (login page)");
     }
 
   }
