@@ -22,6 +22,11 @@ export default function Page() {
 
     const [data, setData] = useState(null)
 
+    function removeFromCart(pname, price){
+        console.log("removing from cart: " + pname + price);
+        fetch(`api/removeFromCart?pname=${pname}&price=${price}`);
+    }
+
     useEffect(() => {
 
         fetch('api/getCart')
