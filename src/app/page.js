@@ -31,12 +31,12 @@ export default function Page() {
     const data = await res.json();
 
 
-    console.log("Response data:", data);
-    if (data === true) {
-      console.log("login valid");
-      window.location = "/dashboard/page.js";
+    if(data.data== "true"){
+      console.log("login valid")
+
     } else {
-      console.log("not valid");
+
+      console.log("login invalid (login page)")
     }
 
 
