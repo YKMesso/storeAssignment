@@ -25,10 +25,10 @@ export async function GET(req, res) {
     console.log('Connected successfully to server');
     const db = client.db(dbName);
     const collection = db.collection('shopping_cart'); // collection name
-    //const myobj = {"pname": pname, "price": price, "username": username};
+    var myobj = {pname: pname, price: price, username: username};
     //const insertResult = await collection.insertOne(myobj);
-    const findResult = await collection.deleteOne({pname: pname, price: price, username: username});
+    const findResult = await collection.deleteOne(myobj);
 //==========================================================
 // at the end of the process we need to send something back.
-    return Response.json({ "data":"" + "inserted" + ""});
+    return Response.json({ data:"" + "removed" + ""});
 }
