@@ -16,6 +16,7 @@ import {ThemeProvider } from '@mui/material/styles';
 
 import { createTheme } from '@mui/material/styles';
 import { green, purple } from '@mui/material/colors';
+import validator from "email-validator";
 
 
 export default function Page() {
@@ -41,9 +42,54 @@ export default function Page() {
     }
   }
 
+  const validateForm = (event) => {
+    let errorMessage = ""
+
+    const data = new FormData(event.currentTarget);
+
+    //get email
+    let email = data.get('email');
+
+
+    //pull validator
+    var validator = require("email-validator");
+
+
+    //run validator
+    let emailCheck = validator.validate(email);
+
+
+    //prints status
+    console.log("email status" + emailCheck);
+
+
+    //if false, add error string
+    if (emailCheck == false){
+      errorMessage += 'Incorrt Email';
+    }
+
+    // Validate the password
+    let pass = data.get('pass')
+    if(pass.length ==0){
+      errorMessage += ' No password added';
+    } else if(pass.length < 7){
+      errorMessage += 'Password is too short - Minimum 8 Characters';
+    }
+
+    let fname = data.get('fname')
+    if(fname.length == 0){
+      errorMessage += ' No first name added';
+    }
+
+    let lname = data.get('lname')
+    if(lname.length == 0){
+      errorMessage += ' No last name added';
+    }
+    return errorMessage;
+  }
+
 
   /*
-
   When the button is clicked, this is the event that is fired.
   The first thing we need to do is prevent the default refresh of the page.
   */
