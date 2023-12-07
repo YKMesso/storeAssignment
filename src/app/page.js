@@ -60,22 +60,31 @@ export default function Page() {
 
       //get email
       let email = data.get('email');
+      let password = data.get('password');
 
       //pull validator
       var validator = require("email-validator");
+      var validator2 = require("password-validator");
 
       //run validator
       let emailCheck = validator.validate(email);
+      let passCheck = validator2.validate(password);
 
       //prints status
       console.log("email status" + emailCheck);
+      console.log("password status" + passCheck);
 
       //if false, add error string
       if (emailCheck == false){
         errorMessage += 'Incorret Email';
+      } else if (passCheck == false){
+        errorMessage += 'Invalid Password';
+      } else {
+
       }
       return errorMessage;
     }
+
     const handleSubmit = (event) => {
 
       console.log("handling submit");
