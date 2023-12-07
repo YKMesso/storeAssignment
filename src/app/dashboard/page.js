@@ -20,6 +20,15 @@ import { useState, useEffect } from 'react'
 
 export default function Page() {
 
+    fetch('api/checkAuth')
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data.status);
+            if(data.status!='true'){
+                window.location="/"
+            }
+        })
+
     // function for putting items into the shopping cart.
     function putInCart(pname, price, username){
         console.log("putting in cart: " + pname + price + username);

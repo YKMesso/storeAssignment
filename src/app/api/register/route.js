@@ -24,6 +24,10 @@ export async function GET(req, res) {
   console.log(number);
   console.log(dob);
 
+  const bcrypt = require('bcrypt');
+  const saltRounds = 10;
+  const hash = bcrypt.hashSync(pass, saltRounds);
+
   // database call goes here
   const { MongoClient } = require('mongodb');
   // const url = 'mongodb://root:example@localhost:27017/';
@@ -35,7 +39,7 @@ export async function GET(req, res) {
   const db = client.db(dbName);
   const collection = db.collection('login'); // collection name
   const findResult = await collection.insertOne({"username":
-    email, "pass": pass, "dob": dob})
+    email, "pass": hash, "dob": dob})
 
 
   // at the end of the process we need to send something back.

@@ -69,25 +69,25 @@ export default function Page() {
 
     //if false, add error string
     if (emailCheck == false){
-      errorMessage += 'Incorrt Email';
+      errorMessage += 'Invalid Email';
     }
 
     // Validate the password
     let pass = data.get('pass')
     if(pass.length ==0){
-      errorMessage += ' No password added';
+      errorMessage += '\nNo password added';
     } else if(pass.length < 7){
-      errorMessage += 'Password is too short - Minimum 8 Characters';
+      errorMessage += '\nPassword is too short - Minimum 8 Characters';
     }
 
     let fname = data.get('fname')
     if(fname.length == 0){
-      errorMessage += ' No first name added';
+      errorMessage += '\nNo first name added';
     }
 
     let lname = data.get('lname')
     if(lname.length == 0){
-      errorMessage += ' No last name added';
+      errorMessage += '\nNo last name added';
     }
     return errorMessage;
   }
