@@ -16,12 +16,6 @@ import {ThemeProvider } from '@mui/material/styles';
 
 import { createTheme } from '@mui/material/styles';
 import { green, purple } from '@mui/material/colors';
-import validator from "email-validator";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogActions from "@mui/material/DialogActions";
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
