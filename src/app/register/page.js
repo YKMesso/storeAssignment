@@ -54,6 +54,7 @@ export default function Page() {
     let email = data.get('email');
 
 
+
     //pull validator
     var validator = require("email-validator");
 
@@ -143,6 +144,18 @@ export default function Page() {
     },
   });
 
+  //first
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  //second
+  const [errorHolder, setErrorHolder] = React.useState(false);
 
   return (
     <ThemeProvider theme={theme}>
