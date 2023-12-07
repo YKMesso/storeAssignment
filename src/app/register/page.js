@@ -100,15 +100,26 @@ export default function Page() {
 		
 		console.log("handling submit");
 
+        event.preventDefault();
 
-    event.preventDefault();
-  
-		const data = new FormData(event.currentTarget);
+      //call validator
+      let errorMessage = validateForm(event);
+
+      // save the message
+      setErrorHolder(errorMessage);
+
+      //if we have error
+      if(errorMessage.length > 0){
+
+        setOpen(true);
+
+      }else {
+        const data = new FormData(event.currentTarget);
 
         let fname = data.get('fname');
         let lname = data.get('lname');
         let email = data.get('email');
-		let pass = data.get('pass');
+        let pass = data.get('pass');
         let dob = data.get('dob');
 
         console.log("Sent fname:" + fname);
@@ -118,9 +129,8 @@ export default function Page() {
         console.log("Sent dob:" + dob);
 
 
-
-    runDBCallAsync(`api/login?email=${email}&pass=${pass}`);
-
+        runDBCallAsync(`api/login?email=${email}&pass=${pass}`);
+      }
   }; // end handler
 
 
