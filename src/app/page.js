@@ -47,28 +47,60 @@ export default function Page() {
 
   //  When the button is clicked, this is the event that is fired.
     //The first thing we need to do is prevent the default refresh of the page.
-    
+    const validateForm = (event) => {
+      let errorMessage = ""
+
+      const data = new FormData(event.currentTarget);
+
+      //get email
+      let email = data.get('email');
+
+      //pull validator
+      var validator = require("email-validator");
+
+      //run validator
+      let emailCheck = validator.validate(email);
+
+      //prints status
+      console.log("email status" + emailCheck);
+
+      //if false, add error string
+      if (emailCheck == false){
+        errorMessage += 'Incorret Email';
+      }
+      return errorMessage;
+    }
     const handleSubmit = (event) => {
 
       console.log("handling submit");
 
-
       event.preventDefault();
 
-      const data = new FormData(event.currentTarget);
+      //call validator
+      let errorMessage = validateForm(event);
 
+      // save the message
+      setErrorHolder(errorMessage);
 
-      let email = data.get('email')
-      let pass = data.get('pass')
-      let dob = data.get('dob')
+      //if we have error
+      if(errorMessage.length > 0){
 
+        setOpen(true);
 
-      console.log("Sent email:" + email)
-      console.log("Sent pass:" + pass)
-      console.log("Sent dob:" + dob)
+      }else {
 
+        const data = new FormData(event.currentTarget);
 
-      runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
+        let email = data.get('email')
+        let pass = data.get('pass')
+        let dob = data.get('dob')
+
+        console.log("Sent email:" + email)
+        console.log("Sent pass:" + pass)
+        console.log("Sent dob:" + dob)
+
+        runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
+      }
     }; // end handler
 
 
@@ -81,6 +113,18 @@ export default function Page() {
       },
     });
 
+    //first
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  //second
+  const [errorHolder, setErrorHolder] = React.useState(false);
 
     return (
         <ThemeProvider theme={theme}>
