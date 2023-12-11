@@ -35,16 +35,17 @@ export default function Page() {
     const res = await fetch(url);
     const data = await res.json();
 
-/*
-    if(data === "true"){
+
+    if(data == "true"){
       console.log("login valid");
-      window.location.href = '/dashboard';
+      window.location.href= '/dashboard';
     } else {
 
       console.log("login invalid (login page)");
-    } */
+    }
 
   }
+
 
   //  When the button is clicked, this is the event that is fired.
     //The first thing we need to do is prevent the default refresh of the page.
@@ -56,14 +57,18 @@ export default function Page() {
       //get email
       let email = data.get('email');
 
+
       //pull validator
       var validator = require("email-validator");
+
 
       //run validator
       let emailCheck = validator.validate(email);
 
+
       //prints status
-      console.log("email status " + emailCheck);
+      console.log("email status" + emailCheck);
+
 
       //if false, add error string
       if (emailCheck == false){
@@ -78,7 +83,7 @@ export default function Page() {
       return errorMessage;
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
 
       console.log("handling submit");
 
@@ -91,10 +96,14 @@ export default function Page() {
       setErrorHolder(errorMessage);
 
       //if we have error
-      if (errorMessage.length > 0) {
+      if(errorMessage.length > 0){
+
         setOpen(true);
-      } else {
-        const data = new FormData(event);
+
+      }else {
+
+        const data = new FormData(event.currentTarget);
+
         let email = data.get('email');
         let pass = data.get('pass');
         let dob = data.get('dob');
@@ -103,25 +112,7 @@ export default function Page() {
         console.log("Sent pass:" + pass);
         console.log("Sent dob:" + dob);
 
-        try {
-          // Make the API call to logscript
-          const res = await fetch(`api/logscript?email=${email}&pass=${pass}&dob=${dob}`);
-
-          if (!res.ok) {
-            throw new Error(`API request failed with status ${res.status}`);
-          }
-
-          const result = await res.json();
-
-          if (result === "true") {
-            console.log("login valid");
-            window.location.href = '/dashboard';
-          } else {
-            console.log("login invalid (login page)");
-          }
-        } catch (error) {
-          console.error("Error calling logscript API:", error);
-        }
+        runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
       }
     }; // end handler
 
@@ -143,6 +134,11 @@ export default function Page() {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleRedirect = () => {
+    // Redirect to the desired page
+    window.location.href = '/dashboard';
   };
 
   //second
@@ -229,6 +225,7 @@ export default function Page() {
                     fullWidth
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
+                    onClick={handleRedirect()}
                 >
                   Sign In
                 </Button>
