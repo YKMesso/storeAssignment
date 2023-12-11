@@ -220,6 +220,7 @@ export default function Page() {
                     fullWidth
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
+                    onClick={'/dashboard'}
                 >
                   Sign In
                 </Button>
