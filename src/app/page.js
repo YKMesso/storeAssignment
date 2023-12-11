@@ -35,14 +35,14 @@ export default function Page() {
     const res = await fetch(url);
     const data = await res.json();
 
-
-    if(data == "true"){
+/*
+    if(data === "true"){
       console.log("login valid");
-      window.location.href= '/dashboard';
+      window.location.href = '/dashboard';
     } else {
 
       console.log("login invalid (login page)");
-    }
+    } */
 
   }
     
