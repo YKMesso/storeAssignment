@@ -104,13 +104,13 @@ export default function Page() {
 
         const data = new FormData(event.currentTarget);
 
-        let email = data.get('email')
-        let pass = data.get('pass')
-        let dob = data.get('dob')
+        let email = data.get('email');
+        let pass = data.get('pass');
+        let dob = data.get('dob');
 
-        console.log("Sent email:" + email)
-        console.log("Sent pass:" + pass)
-        console.log("Sent dob:" + dob)
+        console.log("Sent email:" + email);
+        console.log("Sent pass:" + pass);
+        console.log("Sent dob:" + dob);
 
         runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
       }
