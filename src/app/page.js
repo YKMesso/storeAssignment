@@ -83,7 +83,7 @@ export default function Page() {
       return errorMessage;
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
       console.log("handling submit");
 
@@ -96,14 +96,10 @@ export default function Page() {
       setErrorHolder(errorMessage);
 
       //if we have error
-      if(errorMessage.length > 0){
-
+      if (errorMessage.length > 0) {
         setOpen(true);
-
-      }else {
-
+      } else {
         const data = new FormData(event.currentTarget);
-
         let email = data.get('email');
         let pass = data.get('pass');
         let dob = data.get('dob');
@@ -112,7 +108,16 @@ export default function Page() {
         console.log("Sent pass:" + pass);
         console.log("Sent dob:" + dob);
 
-        runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
+        // Make the API call and handle redirection
+        const res = await fetch(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
+        const result = await res.json();
+
+        if (result === "true") {
+          console.log("login valid");
+          window.location.href = '/dashboard';
+        } else {
+          console.log("login invalid (login page)");
+        }
       }
     }; // end handler
 
@@ -220,7 +225,6 @@ export default function Page() {
                     fullWidth
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
-                    onClick={'/dashboard'}
                 >
                   Sign In
                 </Button>
