@@ -48,85 +48,85 @@ export default function Page() {
 
 
   //  When the button is clicked, this is the event that is fired.
-    //The first thing we need to do is prevent the default refresh of the page.
-    const validateForm = (event) => {
-      let errorMessage = ""
+  //The first thing we need to do is prevent the default refresh of the page.
+  const validateForm = (event) => {
+    let errorMessage = ""
+
+    const data = new FormData(event.currentTarget);
+
+    //get email
+    let email = data.get('email');
+
+
+    //pull validator
+    var validator = require("email-validator");
+
+
+    //run validator
+    let emailCheck = validator.validate(email);
+
+
+    //prints status
+    console.log("email status" + emailCheck);
+
+
+    //if false, add error string
+    if (emailCheck == false){
+      errorMessage += 'Incorrect Email';
+    }
+
+    // Validate the password
+    let pass = data.get('pass')
+    if(pass.length ==0){
+      errorMessage += ' No password added';
+    }
+    return errorMessage;
+  }
+
+  const handleSubmit = (event) => {
+
+    console.log("handling submit");
+
+    event.preventDefault();
+
+    //call validator
+    let errorMessage = validateForm(event);
+
+    // save the message
+    setErrorHolder(errorMessage);
+
+    //if we have error
+    if(errorMessage.length > 0){
+
+      setOpen(true);
+
+    }else {
 
       const data = new FormData(event.currentTarget);
 
-      //get email
-      let email = data.get('email');
-
-
-      //pull validator
-      var validator = require("email-validator");
-
-
-      //run validator
-      let emailCheck = validator.validate(email);
-
-
-      //prints status
-      console.log("email status" + emailCheck);
-
-
-      //if false, add error string
-      if (emailCheck == false){
-        errorMessage += 'Incorrect Email';
-      }
-
-      // Validate the password
+      let email = data.get('email')
       let pass = data.get('pass')
-      if(pass.length ==0){
-        errorMessage += ' No password added';
-      }
-      return errorMessage;
+      let dob = data.get('dob')
+
+      console.log("Sent email:" + email)
+      console.log("Sent pass:" + pass)
+      console.log("Sent dob:" + dob)
+
+      runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
     }
-
-    const handleSubmit = (event) => {
-
-      console.log("handling submit");
-
-      event.preventDefault();
-
-      //call validator
-      let errorMessage = validateForm(event);
-
-      // save the message
-      setErrorHolder(errorMessage);
-
-      //if we have error
-      if(errorMessage.length > 0){
-
-        setOpen(true);
-
-      }else {
-
-        const data = new FormData(event.currentTarget);
-
-        let email = data.get('email');
-        let pass = data.get('pass');
-        let dob = data.get('dob');
-
-        console.log("Sent email:" + email);
-        console.log("Sent pass:" + pass);
-        console.log("Sent dob:" + dob);
-
-        runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
-      }
-    }; // end handler
+  }; // end handler
 
 
-    const theme = createTheme({
-      palette: {
+  const theme = createTheme({
+    palette: {
 
-        secondary: {
-          main: green[500],
-        },
+      secondary: {
+        main: green[500],
       },
-    });
+    },
+  });
 
-    //first
+  //first
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -144,112 +144,112 @@ export default function Page() {
   //second
   const [errorHolder, setErrorHolder] = React.useState(false);
 
-    return (
-        <ThemeProvider theme={theme}>
-          <React.Fragment>
-            <Dialog
-                open={open}
-                onClose = {handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-                >
-              <DialogTitle id="alert-dialog-title">
-                {"Error"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  {errorHolder}
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} autoFocus>
-                  Close
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </React.Fragment>
+  return (
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <Dialog
+              open={open}
+              onClose = {handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Error"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                {errorHolder}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} autoFocus>
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </React.Fragment>
 
-          <Container component="main" maxWidth="xs">
-            <CssBaseline/>
-            <Box
-                sx={{
-                  marginTop: 8,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-            >
-              <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline/>
+          <Box
+              sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+          >
+            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
 
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign in
-              </Typography>
-              <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                />
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="dob"
-                    label="dob"
-                    type="text"
-                    id="dob"
-                    autoComplete=""
-                />
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="pass"
-                    label="Pass"
-                    type="pass"
-                    id="pass"
-                    autoComplete="current-password"
-                />
-                <FormControlLabel
-                    control={<Checkbox value="remember" color="primary"/>}
-                    label="Remember me"
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{mt: 3, mb: 2}}
-                    onClick={handleRedirect()}
-                >
-                  Sign In
-                </Button>
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+              />
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="dob"
+                  label="dob"
+                  type="text"
+                  id="dob"
+                  autoComplete=""
+              />
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="pass"
+                  label="Pass"
+                  type="pass"
+                  id="pass"
+                  autoComplete="current-password"
+              />
+              <FormControlLabel
+                  control={<Checkbox value="remember" color="primary"/>}
+                  label="Remember me"
+              />
+              <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{mt: 3, mb: 2}}
+                  onClick={handleRedirect()}
+              >
+                Sign In
+              </Button>
 
 
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link href="../register" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
                 </Grid>
-              </Box>
+                <Grid item>
+                  <Link href="../register" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
             </Box>
+          </Box>
 
-          </Container>
+        </Container>
 
-        </ThemeProvider>
+      </ThemeProvider>
 
-    );
-  
+  );
+
 }
