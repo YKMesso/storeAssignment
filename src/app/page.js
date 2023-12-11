@@ -67,7 +67,7 @@ export default function Page() {
 
 
       //prints status
-      console.log("email status" + emailCheck);
+      console.log("email status " + emailCheck);
 
 
       //if false, add error string
@@ -109,14 +109,19 @@ export default function Page() {
         console.log("Sent dob:" + dob);
 
         // Make the API call and handle redirection
-        const res = await fetch(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
-        const result = await res.json();
+        try {
+          // Make the API call to logscript
+          const res = await fetch(`api/logscript?email=${email}&pass=${pass}&dob=${dob}`);
+          const result = await res.json();
 
-        if (result === "true") {
-          console.log("login valid");
-          window.location.href = '/dashboard';
-        } else {
-          console.log("login invalid (login page)");
+          if (result === "true") {
+            console.log("login valid");
+            window.location.href = '/dashboard';
+          } else {
+            console.log("login invalid (login page)");
+          }
+        } catch (error) {
+          console.error("Error calling logscript API:", error);
         }
       }
     }; // end handler
