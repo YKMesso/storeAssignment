@@ -35,9 +35,10 @@ export async function GET(req, res) {
   console.log("checking " + findResult[0].pass);
   console.log("Hash Comparison Result " + hashResult);
 
-  if(findResult.length >0 && hashResult == true){
+  if(findResult.length > 0 && hashResult == true){
     valid = true;
     console.log("login valid")
+    window.location.href = '/dashboard'
 // save a little cookie to say we are authenticated
     console.log("Saving username and auth status")
     cookies().set('auth', true);
