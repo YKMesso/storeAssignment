@@ -105,7 +105,7 @@ export default function Page() {
 
         try {
           // Make the API call to logscript
-          const res = await fetch(`logscript?email=${email}&pass=${pass}&dob=${dob}`);
+          const res = await fetch(`api/logscript?email=${email}&pass=${pass}&dob=${dob}`);
 
           if (!res.ok) {
             throw new Error(`API request failed with status ${res.status}`);
