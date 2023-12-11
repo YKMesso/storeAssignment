@@ -25,14 +25,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 export default function Page() {
-
   /*
   This function does the actual work
   calling the fetch to get things from the database.
   */
-  
-  
-  
   async function runDBCallAsync(url) {
 
 
@@ -42,7 +38,7 @@ export default function Page() {
 
     if(data == "true"){
       console.log("login valid");
-
+      window.location.href= '/dashboard';
     } else {
 
       console.log("login invalid (login page)");
