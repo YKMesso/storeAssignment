@@ -76,7 +76,7 @@ export default function Page() {
 
       //if false, add error string
       if (emailCheck == false){
-        errorMessage += 'Incorret Email';
+        errorMessage += 'Incorrect Email';
       }
 
       // Validate the password
