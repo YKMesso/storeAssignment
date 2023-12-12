@@ -53,8 +53,6 @@ export default function Page() {
     //get email
     let email = data.get('email');
 
-
-
     //pull validator
     var validator = require("email-validator");
 

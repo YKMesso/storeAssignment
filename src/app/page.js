@@ -23,7 +23,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-
 export default function Page() {
   /*
   This function does the actual work
@@ -49,38 +48,35 @@ export default function Page() {
   //  When the button is clicked, this is the event that is fired.
   //The first thing we need to do is prevent the default refresh of the page.
   const validateForm = (event) => {
-    let errorMessage = ""
+
+    let errorMessage = "";
 
     const data = new FormData(event.currentTarget);
 
     //get email
     let email = data.get('email');
 
-
     //pull validator
     var validator = require("email-validator");
-
 
     //run validator
     let emailCheck = validator.validate(email);
 
-
     //prints status
     console.log("email status" + emailCheck);
 
-
     //if false, add error string
-    if (emailCheck == false){
-      errorMessage += 'Incorrect Email';
+    if (emailCheck == false) {
+      errorMessage += 'Invalid Email';
     }
 
     // Validate the password
-    let pass = data.get('pass')
-    if(pass.length == 0){
-      errorMessage += ' No password added';
+    let pass = data.get('pass');
+    if (pass.length === 0) {
+      errorMessage += 'No password added';
     }
-    return errorMessage;
-  }
+      return errorMessage;
+    }
 
   const handleSubmit = (event) => {
 
@@ -103,13 +99,13 @@ export default function Page() {
 
       const data = new FormData(event.currentTarget);
 
-      let email = data.get('email')
-      let pass = data.get('pass')
-      let dob = data.get('dob')
+      let email = data.get('email');
+      let pass = data.get('pass');
+      let dob = data.get('dob');
 
-      console.log("Sent email:" + email)
-      console.log("Sent pass:" + pass)
-      console.log("Sent dob:" + dob)
+      console.log("Sent email:" + email);
+      console.log("Sent pass:" + pass);
+      console.log("Sent dob:" + dob);
 
       runDBCallAsync(`api/login?email=${email}&pass=${pass}&dob=${dob}`);
     }
@@ -134,7 +130,6 @@ export default function Page() {
   const handleClose = () => {
     setOpen(false);
   };
-
 
   //second
   const [errorHolder, setErrorHolder] = React.useState(false);
