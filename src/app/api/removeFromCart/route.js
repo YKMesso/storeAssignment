@@ -1,11 +1,9 @@
 import {MongoClient} from "mongodb";
 
 export async function GET(req, res) {
-// Make a note we are on
-// the api. This goes to the console.
-    console.log("in the putInCart api page");
-// get the values
-// that were sent across to us.
+// Make a note we are on the api. This goes to the console.
+    console.log("in the RemoveInCart api page");
+// get the values that were sent across to us.
     const { searchParams } = new URL(req.url);
     const pname = searchParams.get('pname');
     const price = searchParams.get('price');
@@ -14,8 +12,6 @@ export async function GET(req, res) {
     console.log(price);
     console.log(username);
 // =================================================
-
-
 
     const { MongoClient } = require('mongodb');
     const url = 'mongodb+srv://mannyojomo:RichWebApp@storeassignment.wietkvg.mongodb.net/?retryWrites=true&w=majority';
