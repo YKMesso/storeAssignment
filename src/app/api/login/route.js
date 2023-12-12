@@ -23,22 +23,22 @@ export async function GET(req, res) {
   console.log('Connected successfully to server');
   const db = client.db(dbName);
   const collection = db.collection('login'); // collection name
-  const findResult = await collection.insertOne({"username": email, "pass":
-    pass, "dob": dob});
-  //const findResult = await collection.find({"username": email}).toArray();
+  //const findResult = await collection.insertOne({"username": email, "pass":
+  //  pass, "dob": dob});
+  const findResult = await collection.find({"username": email}).toArray();
   console.log('Found documents =>', findResult);
 
   let valid = false
 
   const bcrypt = require('bcrypt');
   let hashResult = bcrypt.compareSync(pass, findResult[0].pass); // true
+
   console.log("checking " + findResult[0].pass);
   console.log("Hash Comparison Result " + hashResult);
 
-  if(findResult.length > 0 && hashResult == true){
+  if(findResult.length >0 && hashResult == true){
     valid = true;
     console.log("login valid")
-    window.location.href = '/dashboard'
 // save a little cookie to say we are authenticated
     console.log("Saving username and auth status")
     cookies().set('auth', true);
@@ -47,6 +47,6 @@ export async function GET(req, res) {
     valid = false;
     console.log("login invalid")
   }
-// at the end of the process we need to send something back.
   return Response.json({ "data":"" + valid + ""})
 }
+

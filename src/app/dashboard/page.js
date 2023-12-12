@@ -29,6 +29,7 @@ export default function Page() {
             }
         })
 
+
     // function for putting items into the shopping cart.
     function putInCart(pname, price, username){
         console.log("putting in cart: " + pname + price + username);
