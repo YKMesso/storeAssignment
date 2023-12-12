@@ -36,12 +36,12 @@ export default function Page() {
     const data = await res.json();
 
 
-    if(data === "true"){
+    if(data){
       console.log("login valid");
-
+      window.location.href= '/dashboard';
     } else {
       console.log("login invalid (login page)");
-      window.location.href= '/dashboard';
+
     }
 
   }
