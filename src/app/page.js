@@ -38,10 +38,10 @@ export default function Page() {
 
     if(data === "true"){
       console.log("login valid");
-      window.location.href= '/dashboard';
-    } else {
 
+    } else {
       console.log("login invalid (login page)");
+      window.location.href= '/dashboard';
     }
 
   }
