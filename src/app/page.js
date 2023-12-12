@@ -36,7 +36,7 @@ export default function Page() {
     const data = await res.json();
 
 
-    if(data == "true"){
+    if(data === "true"){
       console.log("login valid");
       window.location.href= '/dashboard';
     } else {
@@ -45,7 +45,6 @@ export default function Page() {
     }
 
   }
-
 
   //  When the button is clicked, this is the event that is fired.
   //The first thing we need to do is prevent the default refresh of the page.
@@ -77,7 +76,7 @@ export default function Page() {
 
     // Validate the password
     let pass = data.get('pass')
-    if(pass.length ==0){
+    if(pass.length == 0){
       errorMessage += ' No password added';
     }
     return errorMessage;
@@ -136,10 +135,6 @@ export default function Page() {
     setOpen(false);
   };
 
-  const handleRedirect = () => {
-    // Redirect to the desired page
-    window.location.href = '/dashboard';
-  };
 
   //second
   const [errorHolder, setErrorHolder] = React.useState(false);
@@ -225,7 +220,6 @@ export default function Page() {
                   fullWidth
                   variant="contained"
                   sx={{mt: 3, mb: 2}}
-                  onClick={handleRedirect()}
               >
                 Sign In
               </Button>
