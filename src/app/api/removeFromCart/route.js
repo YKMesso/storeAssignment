@@ -21,7 +21,7 @@ export async function GET(req, res) {
     console.log('Connected successfully to server');
     const db = client.db(dbName);
     const collection = db.collection('shopping_cart'); // collection name
-    var myobj = {pname: pname, price: price, username: username};
+    const myobj = {pname: pname, price: price, username: username};
     //const insertResult = await collection.insertOne(myobj);
     const findResult = await collection.deleteOne(myobj);
 //==========================================================

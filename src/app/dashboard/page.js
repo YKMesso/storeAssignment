@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react'
 
 export default function Page() {
 
-    fetch('api/checkAuth')
+    fetch('api/authCheck')
         .then((res) => res.json())
         .then((data) => {
             console.log(data.status);
